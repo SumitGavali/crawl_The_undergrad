@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KnowledgeOS — Enterprise File Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #090c10;
+  --surface:   #0f1419;
+  --surface2:  #161d27;
+  --surface3:  #1d2736;
+  --border:    #1f2c3d;
+  --border2:   #2a3a52;
+  --accent:    #2563eb;
+  --accent-hi: #3b82f6;
+  --cyan:      #06b6d4;
+  --green:     #10b981;
+  --amber:     #f59e0b;
+  --red:       #ef4444;
+  --text:      #dde4f0;
+  --muted:     #5d7291;
+  --dim:       #2e3d52;
+  --font-d: 'DM Serif Display', Georgia, serif;
+  --font-b: 'Sora', sans-serif;
+  --font-m: 'DM Mono', monospace;
+}
+
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font-b); overflow-x: hidden; }
+
+/* ══ NAV ══════════════════════════════════════════════════════ */
+.nav {
+  height: 56px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 32px;
+  position: sticky; top: 0; z-index: 100;
+  gap: 0;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 10px; margin-right: 40px; }
+.nav-logo-icon {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-size: 14px; font-weight: bold;
+}
+.nav-logo-text { font-family: var(--font-d); font-size: 18px; letter-spacing: -0.3px; }
+
+.nav-tabs { display: flex; gap: 2px; }
+.nav-tab {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+  border: 1px solid transparent;
+  display: flex; align-items: center; gap: 7px;
+}
+.nav-tab:hover { color: var(--text); background: var(--surface2); }
+.nav-tab.active { color: var(--text); background: var(--surface3); border-color: var(--border2); }
+.nav-tab .tab-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--dim);
+  transition: background 0.2s;
+}
+.nav-tab.active .tab-dot { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+
+.nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.index-status {
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 12px;
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 20px;
+  font-size: 11px; font-family: var(--font-m); color: var(--muted);
+}
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); }
+.status-dot.live { background: var(--green); animation: glow 2s infinite; }
+.status-dot.demo { background: var(--amber); }
+@keyframes glow { 0%,100%{box-shadow:0 0 4px var(--green)} 50%{box-shadow:0 0 10px var(--green)} }
+
+/* ══ VIEWS ════════════════════════════════════════════════════ */
+.view { display: none; min-height: calc(100vh - 56px); }
+.view.active { display: flex; flex-direction: column; }
+
+/* ══ SEARCH VIEW ══════════════════════════════════════════════ */
+.search-hero {
+  padding: 56px 40px 36px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-family: var(--font-m); color: var(--cyan); margin-bottom: 14px; }
+.hero-title {
+  font-family: var(--font-d);
+  font-size: clamp(30px, 3.5vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+  margin-bottom: 10px;
+  background: linear-gradient(160deg, #dde4f0 30%, #4a6080);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-sub { font-size: 14px; color: var(--muted); max-width: 400px; line-height: 1.65; margin-bottom: 36px; }
+
+.search-box-wrap { width: 100%; max-width: 660px; position: relative; margin-bottom: 14px; }
+.search-box {
+  width: 100%; padding: 16px 110px 16px 48px;
+  background: var(--surface); border: 1.5px solid var(--border2);
+  border-radius: 12px; color: var(--text); font-size: 14.5px; font-family: var(--font-b);
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box::placeholder { color: var(--dim); }
+.search-box:focus { border-color: var(--accent-hi); box-shadow: 0 0 0 3px rgba(59,130,246,0.1), 0 8px 32px rgba(0,0,0,0.5); }
+.search-icon-left { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 17px; pointer-events: none; }
+.search-go {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  border: none; border-radius: 8px; padding: 8px 18px;
+  color: white; font-family: var(--font-b); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: opacity 0.15s;
+}
+.search-go:hover { opacity: 0.88; }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 8px; }
+.chip {
+  padding: 5px 14px; border-radius: 20px;
+  border: 1px solid var(--border2); background: var(--surface2);
+  font-size: 11px; color: var(--muted); cursor: pointer; transition: all 0.15s;
+}
+.chip:hover { border-color: var(--accent-hi); color: var(--accent-hi); }
+
+/* Results */
+.results-wrap { flex: 1; padding: 0 40px 60px; max-width: 900px; width: 100%; margin: 0 auto; }
+
+.results-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.results-bar-left { display: flex; align-items: center; gap: 12px; }
+.res-count { font-size: 12px; font-family: var(--font-m); color: var(--muted); }
+.mode-pill {
+  font-size: 9px; letter-spacing: 1px; font-family: var(--font-m);
+  padding: 3px 8px; border-radius: 4px; font-weight: 500;
+}
+.mode-pill.live { background: #0a2018; border: 1px solid #0f3d25; color: var(--green); }
+.mode-pill.demo { background: #1a1200; border: 1px solid #3d2d00; color: var(--amber); }
+.res-time { font-size: 11px; font-family: var(--font-m); color: var(--dim); }
+
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px; margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.15s;
+  animation: fadeUp 0.3s ease both;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.result-card:nth-child(1){animation-delay:.04s}
+.result-card:nth-child(2){animation-delay:.08s}
+.result-card:nth-child(3){animation-delay:.12s}
+.result-card:nth-child(4){animation-delay:.16s}
+.result-card:nth-child(5){animation-delay:.20s}
+.result-card:hover { border-color: var(--accent-hi); box-shadow: 0 6px 28px rgba(0,0,0,0.4); }
+
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px 12px; gap: 12px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.card-header-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.ftype {
+  flex-shrink: 0; font-size: 9px; font-family: var(--font-m); font-weight: 500;
+  letter-spacing: 1px; padding: 3px 7px; border-radius: 4px;
+}
+.ftype-pdf  { background:#1e0a0a; border:1px solid #4a1515; color:#f87171; }
+.ftype-docx { background:#0a1020; border:1px solid #153060; color:#60a5fa; }
+.ftype-xlsx { background:#071a10; border:1px solid #0f3a20; color:#34d399; }
+.ftype-txt  { background:#1a1200; border:1px solid #3d2d00; color:#fbbf24; }
+.ftype-def  { background:var(--surface2); border:1px solid var(--border); color:var(--muted); }
+
+.file-path-wrap { flex: 1; min-width: 0; }
+.file-dir  { font-size: 11px; font-family: var(--font-m); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-name { font-size: 13px; font-family: var(--font-m); color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.score-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.score-bar-row { display: flex; align-items: center; gap: 8px; }
+.score-bar-bg { width: 80px; height: 4px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+.score-num { font-size: 12px; font-family: var(--font-m); font-weight: 500; min-width: 34px; text-align: right; }
+.score-label { font-size: 9px; font-family: var(--font-m); color: var(--dim); letter-spacing: 1px; text-transform: uppercase; }
+
+.card-excerpt {
+  padding: 14px 20px 12px;
+  font-size: 13px; line-height: 1.72; color: #8fa0b8;
+  border-left: 3px solid var(--border2); margin: 12px 20px;
+  border-radius: 0 4px 4px 0; background: var(--surface2);
+  border-radius: 6px; border-left: 3px solid var(--accent);
+}
+.card-excerpt mark { background: rgba(59,130,246,0.18); color: #93c5fd; border-radius: 2px; padding: 0 2px; font-style: normal; }
+
+/* ── SOURCE PROOF PANEL ── */
+.source-proof {
+  display: none;
+  border-top: 1px solid var(--border);
+  padding: 0;
+  animation: expandDown 0.2s ease;
+}
+@keyframes expandDown { from{opacity:0;max-height:0} to{opacity:1;max-height:400px} }
+.source-proof.open { display: block; }
+
+.source-proof-inner { padding: 16px 20px 20px; }
+.proof-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-m); color: var(--cyan); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.proof-title::after { content:''; flex: 1; height: 1px; background: var(--border); }
+
+.proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.proof-cell {
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 10px 14px;
+}
+.proof-cell-label { font-size: 9px; font-family: var(--font-m); color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.proof-cell-val { font-size: 12px; font-family: var(--font-m); color: var(--text); word-break: break-all; }
+
+.full-path-box {
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;
+  font-size: 11px; font-family: var(--font-m); color: var(--muted);
+  word-break: break-all; line-height: 1.6;
+}
+.full-path-box span { color: var(--cyan); }
+
+.proof-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.proof-btn {
+  padding: 8px 16px; border-radius: 8px;
+  font-size: 12px; font-family: var(--font-b); font-weight: 500;
+  cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 7px;
+  border: 1px solid var(--border2);
+}
+.proof-btn-primary { background: var(--accent); border-color: var(--accent); color: white; }
+.proof-btn-primary:hover { background: var(--accent-hi); }
+.proof-btn-secondary { background: var(--surface3); color: var(--muted); }
+.proof-btn-secondary:hover { border-color: var(--accent-hi); color: var(--text); }
+
+.expand-toggle {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-family: var(--font-m); color: var(--muted);
+  padding: 10px 20px; cursor: pointer;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+  transition: color 0.15s;
+  user-select: none;
+}
+.expand-toggle:hover { color: var(--accent-hi); }
+.expand-icon { font-size: 10px; transition: transform 0.2s; }
+.expand-icon.open { transform: rotate(180deg); }
+
+/* States */
+.state-empty, .state-loading { text-align: center; padding: 80px 20px; }
+.state-empty-icon { font-size: 42px; opacity: 0.2; margin-bottom: 14px; }
+.state-empty-title { font-family: var(--font-d); font-size: 20px; color: var(--muted); margin-bottom: 6px; }
+.state-empty-sub { font-size: 13px; color: var(--dim); }
+.loading-txt { font-size: 13px; font-family: var(--font-m); color: var(--muted); }
+.loading-txt::after { content:''; animation: dots 1s infinite; }
+@keyframes dots { 0%{content:'.'} 33%{content:'..'} 66%{content:'...'} 100%{content:''} }
+
+.demo-warn {
+  margin: 0 40px 18px;
+  max-width: 820px;
+  padding: 11px 16px; border-radius: 8px;
+  background: #1a1200; border: 1px solid #3d2d00;
+  font-size: 11px; font-family: var(--font-m); color: var(--amber);
+  display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+}
+
+/* ══ CRAWL VIEW ════════════════════════════════════════════════ */
+.crawl-layout {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 0; flex: 1;
+}
+
+.crawl-sidebar {
+  background: var(--surface); border-right: 1px solid var(--border);
+  padding: 28px 24px; display: flex; flex-direction: column; gap: 24px;
+}
+
+.crawl-section-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-m); color: var(--dim); margin-bottom: 12px; }
+
+.folder-input-wrap { display: flex; flex-direction: column; gap: 8px; }
+.folder-input {
+  background: var(--surface2); border: 1.5px solid var(--border2);
+  border-radius: 8px; padding: 10px 14px;
+  font-size: 12px; font-family: var(--font-m); color: var(--text);
+  outline: none; transition: border-color 0.2s;
+}
+.folder-input:focus { border-color: var(--accent-hi); }
+.crawl-start-btn {
+  padding: 11px 0; border-radius: 8px; border: none;
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  color: white; font-family: var(--font-b); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: opacity 0.15s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.crawl-start-btn:hover { opacity: 0.88; }
+.crawl-start-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.crawl-counters { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.counter-card {
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 14px;
+}
+.counter-num { font-family: var(--font-d); font-size: 28px; color: var(--accent-hi); line-height: 1; }
+.counter-label { font-size: 10px; color: var(--muted); margin-top: 4px; font-family: var(--font-m); }
+
+.progress-section { }
+.progress-bar-bg { width: 100%; height: 6px; background: var(--border2); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.progress-text { font-size: 11px; font-family: var(--font-m); color: var(--muted); display: flex; justify-content: space-between; }
+
+.crawl-state-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: 8px;
+  font-size: 11px; font-family: var(--font-m);
+  background: var(--surface2); border: 1px solid var(--border2); color: var(--muted);
+  transition: all 0.3s;
+}
+.crawl-state-badge.running { background: #071a10; border-color: #0f3a20; color: var(--green); }
+.crawl-state-badge.done    { background: #071a20; border-color: #0f2a50; color: var(--cyan); }
+.crawl-state-badge.error   { background: #1a0808; border-color: #3a1010; color: var(--red); }
+.crawl-state-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+.crawl-state-badge.running .crawl-state-dot { background: var(--green); animation: glow 1s infinite; }
+.crawl-state-badge.done    .crawl-state-dot { background: var(--cyan); }
+
+/* Terminal */
+.terminal {
+  flex: 1; padding: 28px 32px;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.terminal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.terminal-title { font-family: var(--font-d); font-size: 18px; font-style: italic; color: var(--muted); }
+.terminal-clear {
+  font-size: 11px; font-family: var(--font-m); color: var(--dim);
+  background: none; border: 1px solid var(--border); padding: 5px 12px;
+  border-radius: 6px; cursor: pointer; transition: all 0.15s;
+}
+.terminal-clear:hover { color: var(--muted); border-color: var(--muted); }
+
+.terminal-body {
+  flex: 1;
+  background: #060810;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  font-family: var(--font-m); font-size: 12.5px; line-height: 1.8;
+  min-height: 400px; max-height: calc(100vh - 180px);
+}
+.terminal-body::-webkit-scrollbar { width: 4px; }
+.terminal-body::-webkit-scrollbar-track { background: transparent; }
+.terminal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.t-line { display: flex; gap: 12px; animation: tLine 0.15s ease; }
+@keyframes tLine { from{opacity:0;transform:translateX(-4px)} to{opacity:1;transform:translateX(0)} }
+.t-time { color: var(--dim); flex-shrink: 0; }
+.t-icon { flex-shrink: 0; width: 16px; text-align: center; }
+.t-msg { flex: 1; }
+
+/* Terminal line types */
+.t-start   .t-msg { color: var(--cyan); }
+.t-info    .t-msg { color: #7ba7c9; }
+.t-reading .t-msg { color: var(--muted); }
+.t-extract .t-msg { color: #8899cc; }
+.t-index   .t-msg { color: #6b88bb; }
+.t-done    .t-msg { color: #a0c8a0; }
+.t-complete .t-msg { color: var(--green); font-weight: 500; }
+.t-error   .t-msg { color: var(--red); }
+
+.t-file-highlight { color: var(--text); }
+.t-chunk-count { color: var(--amber); }
+.t-num { color: var(--cyan); }
+
+.terminal-cursor { display: inline-block; width: 8px; height: 14px; background: var(--green); margin-left: 4px; animation: blink 1s infinite; vertical-align: middle; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.terminal-idle { color: var(--dim); padding: 20px 0; font-style: italic; }
+
+/* File type counters in sidebar */
+.type-counts { display: flex; flex-direction: column; gap: 6px; }
+.type-count-row { display: flex; align-items: center; justify-content: space-between; }
+.type-count-name { font-size: 11px; font-family: var(--font-m); display: flex; align-items: center; gap: 8px; }
+.type-c-dot { width: 7px; height: 7px; border-radius: 2px; }
+.type-count-val { font-size: 11px; font-family: var(--font-m); color: var(--muted); }
+
+/* ══ SCROLLBAR ════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">K</div>
+    <span class="nav-logo-text">KnowledgeOS</span>
+  </div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" id="tab-search" onclick="switchView('search')">
+      <span class="tab-dot"></span> Search
+    </div>
+    <div class="nav-tab" id="tab-crawl" onclick="switchView('crawl')">
+      <span class="tab-dot"></span> Live Crawl
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="index-status">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-label">Connecting...</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- SEARCH VIEW                                               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="view active" id="view-search">
+
+  <div class="search-hero">
+    <div class="hero-label">Enterprise Knowledge Search</div>
+    <h1 class="hero-title">Ask anything.<br/>Find it in your files.</h1>
+    <p class="hero-sub">Semantic search across every document your company has — PDFs, Word docs, spreadsheets, manuals.</p>
+
+    <div class="search-box-wrap">
+      <span class="search-icon-left">⌕</span>
+      <input type="text" class="search-box" id="search-input"
+             placeholder="e.g. oil change interval GA 37 compressor..."
+             autocomplete="off"/>
+      <button class="search-go" onclick="doSearch()">Search</button>
+    </div>
+
+    <div class="chips">
+      <div class="chip" onclick="runQuery('oil change interval compressor')">Oil change interval</div>
+      <div class="chip" onclick="runQuery('lockout tagout safety procedure')">Lockout tagout</div>
+      <div class="chip" onclick="runQuery('spare parts catalog filter')">Spare parts</div>
+      <div class="chip" onclick="runQuery('annual maintenance service report')">Maintenance reports</div>
+      <div class="chip" onclick="runQuery('onboarding training technician')">Technician training</div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="state-loading" class="state-loading" style="display:none;">
+    <div class="loading-txt">Searching your knowledge base</div>
+  </div>
+
+  <!-- Empty -->
+  <div id="state-empty" class="state-empty" style="display:none;">
+    <div class="state-empty-icon">◎</div>
+    <div class="state-empty-title">No results found</div>
+    <div class="state-empty-sub">Try different keywords or re-index your folder</div>
+  </div>
+
+  <!-- Results -->
+  <div id="state-results" style="display:none;">
+    <div class="results-wrap">
+      <div class="results-bar">
+        <div class="results-bar-left">
+          <span class="res-count" id="res-count"></span>
+          <span class="mode-pill" id="res-mode"></span>
+        </div>
+        <span class="res-time" id="res-time"></span>
+      </div>
+      <div id="demo-warn-wrap"></div>
+      <div id="results-grid"></div>
+    </div>
+  </div>
+
+</div><!-- /view-search -->
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- CRAWL VIEW                                                -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="view" id="view-crawl">
+  <div class="crawl-layout">
+
+    <!-- Sidebar controls -->
+    <aside class="crawl-sidebar">
+
+      <div>
+        <div class="crawl-section-title">Target Folder</div>
+        <div class="folder-input-wrap">
+          <input type="text" class="folder-input" id="crawl-folder" value="./demo_docs"
+                 placeholder="e.g. C:\SharePoint\Engineering or ./demo_docs"/>
+          <button class="crawl-start-btn" id="crawl-btn" onclick="startCrawl()">
+            ▶ Start Indexing
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="crawl-section-title">Status</div>
+        <div class="crawl-state-badge" id="crawl-badge">
+          <div class="crawl-state-dot"></div>
+          <span id="crawl-badge-text">Ready</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="crawl-section-title">Progress</div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+        <div class="progress-text">
+          <span id="prog-files">0 files</span>
+          <span id="prog-pct">0%</span>
+        </div>
+      </div>
+
+      <div class="crawl-counters">
+        <div class="counter-card">
+          <div class="counter-num" id="cnt-files">0</div>
+          <div class="counter-label">Files indexed</div>
+        </div>
+        <div class="counter-card">
+          <div class="counter-num" id="cnt-chunks">0</div>
+          <div class="counter-label">Chunks created</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="crawl-section-title">File Types Found</div>
+        <div class="type-counts" id="type-counts-sidebar">
+          <div style="font-size:11px;color:var(--dim);font-family:var(--font-m)">—</div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Terminal -->
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-title"><em>Indexing console</em></div>
+        <button class="terminal-clear" onclick="clearTerminal()">Clear</button>
+      </div>
+      <div class="terminal-body" id="terminal-body">
+        <div class="terminal-idle">► Enter a folder path and click Start Indexing to see the magic happen...</div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /view-crawl -->
+
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                                -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<script>
+const API = 'http://localhost:8000';
+let crawlES = null;
+let typeCounts = {};
+let totalFiles = 0;
+
+// ── Navigation ─────────────────────────────────────────────
+function switchView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  document.getElementById('tab-' + v).classList.add('active');
+}
+
+// ── Stats / status ──────────────────────────────────────────
+async function loadStatus() {
+  try {
+    const r = await fetch(`${API}/api/stats`);
+    const d = await r.json();
+    const dot = document.getElementById('status-dot');
+    const lbl = document.getElementById('status-label');
+    if (d.mode === 'live') {
+      dot.className = 'status-dot live';
+      lbl.textContent = `${d.total_chunks.toLocaleString()} chunks · Live`;
+    } else {
+      dot.className = 'status-dot demo';
+      lbl.textContent = 'Demo Mode';
+    }
+  } catch(e) {
+    document.getElementById('status-label').textContent = 'Offline';
+  }
+}
+loadStatus();
+
+// ── Search ──────────────────────────────────────────────────
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+
+function runQuery(q) {
+  document.getElementById('search-input').value = q;
+  doSearch();
+}
+
+async function doSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  if (!q) return;
+
+  ['state-results','state-empty'].forEach(id => document.getElementById(id).style.display = 'none');
+  document.getElementById('state-loading').style.display = 'block';
+
+  try {
+    const r = await fetch(`${API}/api/search?q=${encodeURIComponent(q)}`);
+    const d = await r.json();
+    renderResults(d, q);
+  } catch(e) {
+    document.getElementById('state-loading').style.display = 'none';
+    document.getElementById('state-empty').style.display = 'block';
+  }
+}
+
+function renderResults(d, q) {
+  document.getElementById('state-loading').style.display = 'none';
+  if (d.mode === 'no_index') {
+    document.getElementById('state-loading').style.display = 'none';
+    document.getElementById('demo-warn-wrap').innerHTML = `<div class="demo-warn">⚠ No index yet — go to <strong>Live Crawl</strong> tab, enter your folder path, and click Start Indexing.</div>`;
+    document.getElementById('state-results').style.display = 'block';
+    document.getElementById('results-grid').innerHTML = '';
+    document.getElementById('res-count').textContent = 'No index found';
+    document.getElementById('res-mode').textContent = '';
+    return;
+  }
+  if (!d.results?.length) { document.getElementById('state-empty').style.display = 'block'; return; }
+
+  document.getElementById('res-count').textContent = `${d.results.length} results for "${q}"`;
+  const mp = document.getElementById('res-mode');
+  mp.textContent = d.mode.toUpperCase();
+  mp.className = `mode-pill ${d.mode}`;
+  document.getElementById('res-time').textContent = `${d.elapsed_ms}ms`;
+
+  document.getElementById('demo-warn-wrap').innerHTML = d.mode === 'no_index'
+    ? `<div class="demo-warn">⚠ No index found — go to the <strong>Live Crawl</strong> tab, enter your folder path, and click Start Indexing first.</div>` : '';
+
+  const words = q.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+  const grid  = document.getElementById('results-grid');
+  grid.innerHTML = '';
+
+  d.results.forEach((r, i) => {
+    const score = Math.round((r.score || 0) * 100);
+    const sc    = score > 80 ? '#10b981' : score > 60 ? '#f59e0b' : '#6b7a92';
+    const ext   = (r.type || 'TXT').toUpperCase().replace('.','');
+    const badgeCls = `ftype ftype-${ext.toLowerCase()}`;
+
+    const parts   = (r.file || '').replace(/\\/g, '/').split('/');
+    const fname   = parts.pop();
+    const fdir    = parts.join(' / ') || '—';
+
+    let chunk = (r.chunk || '').slice(0, 350);
+    if ((r.chunk||'').length > 350) chunk += '…';
+    words.forEach(w => {
+      chunk = chunk.replace(new RegExp(`(${w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'), '<mark>$1</mark>');
+    });
+
+    const card = document.createElement('div');
+    card.className = 'result-card';
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <div class="card-header" onclick="toggleProof(this, ${i})">
+        <div class="card-header-left">
+          <span class="${badgeCls} ftype-def">${ext}</span>
+          <div class="file-path-wrap">
+            <div class="file-dir">${fdir}</div>
+            <div class="file-name">${fname}</div>
+          </div>
+        </div>
+        <div class="score-wrap">
+          <div class="score-bar-row">
+            <div class="score-bar-bg">
+              <div class="score-bar-fill" style="width:${score}%;background:${sc};"></div>
+            </div>
+            <span class="score-num" style="color:${sc}">${score}%</span>
+          </div>
+          <div class="score-label">Relevance</div>
+        </div>
+      </div>
+
+      <div class="card-excerpt">${chunk}</div>
+
+      <div class="expand-toggle" onclick="toggleProof(this.closest('.result-card').querySelector('.card-header'), ${i})">
+        <span class="expand-icon" id="ei-${i}">▾</span>
+        <span id="et-${i}">View source proof</span>
+      </div>
+
+      <div class="source-proof" id="proof-${i}">
+        <div class="source-proof-inner">
+          <div class="proof-title">Source Verification</div>
+          <div class="proof-grid">
+            <div class="proof-cell">
+              <div class="proof-cell-label">File Name</div>
+              <div class="proof-cell-val">${fname}</div>
+            </div>
+            <div class="proof-cell">
+              <div class="proof-cell-label">File Type</div>
+              <div class="proof-cell-val">${ext}</div>
+            </div>
+            <div class="proof-cell">
+              <div class="proof-cell-label">Page / Chunk</div>
+              <div class="proof-cell-val">${r.page !== undefined ? r.page : '—'}</div>
+            </div>
+            <div class="proof-cell">
+              <div class="proof-cell-label">Relevance Score</div>
+              <div class="proof-cell-val" style="color:${sc}">${score}% match</div>
+            </div>
+          </div>
+          <div class="full-path-box">
+            <div style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;color:var(--dim)">Full File Path</div>
+            <span>${fdir ? fdir.replace(/ \/ /g, '/') + '/' : ''}</span><span style="color:var(--cyan)">${fname}</span>
+          </div>
+          <div class="proof-actions">
+            <button class="proof-btn proof-btn-primary" onclick="openFile('${(r.file||'').replace(/'/g,"\\'")}')">
+              ↗ Open Original File
+            </button>
+            <button class="proof-btn proof-btn-secondary" onclick="copyPath('${(r.file||'').replace(/'/g,"\\'")}')">
+              ⎘ Copy Path
+            </button>
+            <button class="proof-btn proof-btn-secondary" onclick="showFullText(${i})">
+              ≡ Full Excerpt
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Store full chunk on element for "Full Excerpt"
+    card.dataset.fullchunk = r.chunk || '';
+    grid.appendChild(card);
+  });
+
+  document.getElementById('state-results').style.display = 'block';
+}
+
+function toggleProof(headerEl, idx) {
+  const proof = document.getElementById(`proof-${idx}`);
+  const icon  = document.getElementById(`ei-${idx}`);
+  const txt   = document.getElementById(`et-${idx}`);
+  const open  = proof.classList.toggle('open');
+  icon.className = open ? 'expand-icon open' : 'expand-icon';
+  txt.textContent = open ? 'Hide source proof' : 'View source proof';
+}
+
+async function openFile(path) {
+  try {
+    await fetch(`${API}/api/open?path=${encodeURIComponent(path)}`);
+  } catch(e) {
+    alert('Could not open file — make sure the backend is running and the path exists:\n' + path);
+  }
+}
+
+function copyPath(path) {
+  navigator.clipboard.writeText(path).then(() => {
+    // brief flash feedback
+  });
+}
+
+function showFullText(idx) {
+  const cards = document.querySelectorAll('.result-card');
+  const card  = cards[idx];
+  if (!card) return;
+  const full = card.dataset.fullchunk;
+  const el = card.querySelector('.card-excerpt');
+  el.innerHTML = full; // show untruncated
+}
+
+// ── Live Crawl ──────────────────────────────────────────────
+// ── Live Crawl ──────────────────────────────────────────────
+function startCrawl() {
+  if (crawlES) { crawlES.close(); crawlES = null; }
+  const folder = document.getElementById('crawl-folder').value.trim() || './demo_docs';
+  document.getElementById('cnt-files').textContent  = '0';
+  document.getElementById('cnt-chunks').textContent = '0';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('prog-files').textContent = '0 files';
+  document.getElementById('prog-pct').textContent   = '0%';
+  document.getElementById('type-counts-sidebar').innerHTML = '<div style="font-size:11px;color:var(--dim);font-family:var(--font-m)">—</div>';
+  typeCounts = {}; totalFiles = 0; embedLineEl = null;
+  clearTerminal();
+  setBadge('running', 'Crawling...');
+  document.getElementById('crawl-btn').disabled = true;
+  crawlES = new EventSource(`${API}/api/crawl/stream?folder=${encodeURIComponent(folder)}`);
+  crawlES.addEventListener('start', e => {
+    const d = JSON.parse(e.data);
+    termLine('start', '▶', `Crawling → <span class="t-file-highlight">${d.folder}</span>`);
+  });
+  crawlES.addEventListener('info', e => {
+    const d = JSON.parse(e.data);
+    totalFiles = d.total;
+    termLine('info', 'ℹ', `Found <span class="t-num">${d.total}</span> files — starting extraction`);
+  });
+  crawlES.addEventListener('reading', e => {
+    const d = JSON.parse(e.data);
+    termLine('reading', '📄', `Reading    <span class="t-file-highlight">${d.file}</span>`);
+    trackType(d.type);
+  });
+  crawlES.addEventListener('extracting', e => {
+    const d = JSON.parse(e.data);
+    termLine('extract', '✂', `Extracting <span class="t-file-highlight">${d.file}</span> → <span class="t-num">${d.pages||'?'}</span> pages`);
+  });
+  crawlES.addEventListener('indexing', e => {
+    const d = JSON.parse(e.data);
+    termLine('index', '⬡', `Chunking   <span class="t-file-highlight">${d.file}</span> → <span class="t-chunk-count">${d.chunks} chunks</span>`);
+  });
+  crawlES.addEventListener('file_done', e => {
+    const d = JSON.parse(e.data);
+    document.getElementById('cnt-files').textContent  = d.indexed;
+    document.getElementById('cnt-chunks').textContent = d.total_chunks;
+    const pct = totalFiles > 0 ? Math.round((d.indexed / totalFiles) * 70) : 0;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('prog-files').textContent = `${d.indexed} / ${totalFiles} files`;
+    document.getElementById('prog-pct').textContent   = pct + '%';
+    termLine('done', '✓', `Done       <span class="t-file-highlight">${d.file}</span> → <span class="t-chunk-count">${d.chunks} chunks</span>`);
+    renderTypeCounts();
+  });
+  crawlES.addEventListener('embedding_start', e => {
+    const d = JSON.parse(e.data);
+    setBadge('running', 'Embedding...');
+    termLine('start', '⬡', `Creating embeddings for <span class="t-num">${d.total_chunks}</span> chunks...`);
+  });
+  crawlES.addEventListener('embedding_progress', e => {
+    const d = JSON.parse(e.data);
+    const pct = 70 + Math.round((d.pct / 100) * 25);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = pct + '%';
+    document.getElementById('prog-files').textContent = `Embedding ${d.done}/${d.total} chunks`;
+    updateEmbedLine(d.done, d.total, d.pct);
+  });
+  crawlES.addEventListener('saving', e => {
+    setBadge('running', 'Saving...');
+    termLine('index', '💾', `Saving index to disk...`);
+    document.getElementById('progress-fill').style.width = '97%';
+    document.getElementById('prog-pct').textContent = '97%';
+  });
+  crawlES.addEventListener('complete', e => {
+    const d = JSON.parse(e.data);
+    termLine('complete', '🎉', `Index complete — <span class="t-num">${d.total_files}</span> files, <span class="t-num">${d.total_chunks}</span> chunks. Ready to search.`);
+    setBadge('done', 'Ready to search');
+    document.getElementById('crawl-btn').disabled = false;
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('prog-pct').textContent = '100%';
+    document.getElementById('prog-files').textContent = `${d.total_files} files complete`;
+    crawlES.close(); crawlES = null;
+    loadStatus();
+    const st = document.getElementById('tab-search');
+    st.style.color = 'var(--green)';
+    setTimeout(() => st.style.color = '', 2500);
+  });
+  crawlES.addEventListener('error', e => {
+    try { const d = JSON.parse(e.data); termLine('error', '✗', d.message||'Error'); } catch(_){}
+    setBadge('error', 'Error');
+    document.getElementById('crawl-btn').disabled = false;
+    if (crawlES) { crawlES.close(); crawlES = null; }
+  });
+  crawlES.onerror = () => {
+    if (!crawlES) return;
+    termLine('error', '✗', 'Lost connection to backend at localhost:8000');
+    setBadge('error', 'Connection lost');
+    document.getElementById('crawl-btn').disabled = false;
+    crawlES.close(); crawlES = null;
+  };
+}
+
+let embedLineEl = null;
+function updateEmbedLine(done, total, pct) {
+  const body = document.getElementById('terminal-body');
+  if (!embedLineEl || !body.contains(embedLineEl)) {
+    embedLineEl = document.createElement('div');
+    embedLineEl.className = 't-line t-index';
+    body.appendChild(embedLineEl);
+  }
+  const now = new Date();
+  const ts = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+  embedLineEl.innerHTML = `<span class="t-time">${ts}</span><span class="t-icon">⬡</span><span class="t-msg">Embedding <span class="t-num">${done}</span>/<span class="t-num">${total}</span> &nbsp;<span style="color:var(--amber)">${pct}%</span></span>`;
+  body.scrollTop = body.scrollHeight;
+}
+
+function termLine(type, icon, msg) {
+  const body = document.getElementById('terminal-body');
+
+  // Remove idle message
+  const idle = body.querySelector('.terminal-idle');
+  if (idle) idle.remove();
+
+  const now  = new Date();
+  const time = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+
+  const line = document.createElement('div');
+  line.className = `t-line t-${type}`;
+  line.innerHTML = `<span class="t-time">${time}</span><span class="t-icon">${icon}</span><span class="t-msg">${msg}</span>`;
+  body.appendChild(line);
+
+  // Keep scroll at bottom
+  body.scrollTop = body.scrollHeight;
+}
+
+function clearTerminal() {
+  document.getElementById('terminal-body').innerHTML = '<div class="terminal-idle">► Enter a folder path and click Start Indexing to see the magic happen...</div>';
+}
+
+function setBadge(state, text) {
+  const b = document.getElementById('crawl-badge');
+  b.className = `crawl-state-badge ${state}`;
+  document.getElementById('crawl-badge-text').textContent = text;
+}
+
+function trackType(type) {
+  const t = (type || 'OTHER').toUpperCase();
+  typeCounts[t] = (typeCounts[t] || 0) + 1;
+}
+
+function renderTypeCounts() {
+  const colors = {PDF:'#f87171',DOCX:'#60a5fa',XLSX:'#34d399',TXT:'#fbbf24',PPTX:'#c084fc'};
+  const el = document.getElementById('type-counts-sidebar');
+  el.innerHTML = Object.entries(typeCounts).map(([t, c]) => `
+    <div class="type-count-row">
+      <span class="type-count-name">
+        <span class="type-c-dot" style="background:${colors[t]||'#6b7a92'}"></span>${t}
+      </span>
+      <span class="type-count-val">${c}</span>
+    </div>`).join('');
+}
+</script>
+
+</body>
+</html>

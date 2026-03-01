@@ -1,0 +1,135 @@
+[
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\Annual_Maintenance_2023.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Annual Maintenance Report — 2023 Executive Summary This report summarises all planned and reactive maintenance activity carried out on the compressed air system during 2023. Total planned maintenance compliance was 96.4%. Two unplanned shutdowns occurred, with a combined downtime of 6.2 hours. Both were caused by oil separator failure. Fleet Status Unit Serial Number Model Hours 2023 Last Service Next Service Status CA-01 BE457821 GA 37 4,218 14-Mar-23 Mar-24 Operational CA-02 BE461044 GA 37 3,902 22-Apr-23 Apr-24 Operational CA-03 CF112837 GA 45 5,100 08-Jan-23 Jan-24 Operational CA-04 CF112901 GA 45 1,240 15-Nov-23 Nov-24 New — 2023 Maintenance Cost Summary Category Q1 Q2 Q3 Q4 Total Parts €2,840 €1,920 €3,450 €1,680 €9,890 Labour (internal) €3,200 €3,200 €3,200 €3,200 €12,800 External contractors €0 €1,800 €0 €0 €1,800 Total €6,040 €6,920 €6,650 €4,880 €24,490 Unplanned Events Event 1 — CA-01 Oil Separator Failure (14 June 2023) Unit CA-01 shut down on high differential pressure alarm. Root cause: oil separator element had reached end of life at 8,200 hours (slightly overdue for replacement). Downtime: 3.5 hours. Parts: 1 × separator element (1613-0109-12). Corrective action: separator replacement schedule moved to 8000 hours maximum. Event 2 — CA-03 Thermostatic Valve Failure (2 September 2023) Unit CA-03 shut down on high oil temperature alarm. Root cause: thermostatic valve failed open, preventing oil from bypassing cooler during warmup, causing temperature sensor to read incorrectly. Downtime: 2.7 hours. Parts: 1 × thermostatic valve (1089-0573-00). 2024 Recommendations 1. Add oil separator to 4000-hour service kit to ensure timely replacement. 2. Stock one additional thermostatic valve as a critical spare. 3. Consider oil analysis programme to predict bearing wear on"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\Employee_Handbook_v3.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Employee Handbook — Version 3 (2024) 1. Our Values Atlas Copco is built on four core values: Interaction, Commitment, Innovation, and Responsibility. These values guide every decision we make — from how we treat customers to how we treat each other. We expect every employee to demonstrate these values in their daily work. 2. Working Hours and Flexibility Standard working hours are 37.5 hours per week, Monday to Friday. Field service technicians follow a shift rota published monthly. Flexible start times (7am–10am) are available for office-based roles with manager agreement. All overtime must be pre-approved in writing. 3. Annual Leave Entitlement All employees receive 25 days annual leave per year plus 8 bank holidays. Leave entitlement increases to 28 days after 5 years of continuous service and 30 days after 10 years. Leave requests must be submitted at least 2 weeks in advance via the HR portal. 4. Sickness Absence For absences of 1–7 days: self-certify via HR portal on first day back. For absences of 8 days or more: a doctors fit note is required. After 4 or more absences in a rolling 12-month period, a return-to-work meeting with your manager is required. Company sick pay is provided for up to 13 weeks at full pay and 13 weeks at half pay. 5. Disciplinary and Grievance Atlas Copco follows a fair and transparent disciplinary process. Informal discussion, formal warning, final written warning, and dismissal are the progressive stages. Gross misconduct (including safety violations, fraud, or harassment) may result in immediate dismissal without prior warnings. 6. Health & Wellbeing We provide access to the Employee Assistance Programme (EAP) — free, confidential counselling and support available 24/7 by phone. All employees receive annual health assessments. Occupational health referrals are available for any work-related health concerns."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\Environmental_Policy_2024.docx",
+    "file_type": "DOCX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Environmental Policy — 2024 Our Commitment Atlas Copco Service Division is committed to minimising the environmental impact of our operations. We comply with all applicable environmental legislation and work continuously to improve our environmental performance. Waste Oil Management All used compressor oil must be collected in the approved waste oil drum (yellow lid, 200L capacity). Never pour used oil down drains or into general waste. Waste oil is collected by our licensed contractor Envirocare every 6 months or when the drum reaches 80% capacity. Collect the waste oil transfer note and file in the environmental records folder. Waste Filter Disposal Used oil filters and separator elements contain residual oil and must be treated as hazardous waste. Place in the red-lidded hazardous waste bin. Do not mix with general waste. Drain filters over the waste oil drum for 10 minutes before disposal to minimise oil content. Spill Response In the event of an oil spill: stop the source if safe to do so, use the spill kit (located in the yellow cabinet) to absorb the spill, do not wash spilled oil into drains, report the spill to the HSE manager within 1 hour, complete the spill report form within 24 hours. Targets 2024 Reduce waste oil volume by 10% through better drain-down procedures Achieve zero environmental non-conformances in ISO 14001 audit Increase recycling rate of packaging materials to 90%"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\GA37_Maintenance_Manual.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "GA 37 Compressor — Maintenance Manual 1. Introduction This manual covers the maintenance procedures for the Atlas Copco GA 37 oil-injected rotary screw compressor. Follow all procedures strictly to ensure safe and reliable operation. This document supersedes all previous versions. 2. Maintenance Schedule 2.1 Daily Checks Every day before starting the compressor: check oil level via sight glass (level must be between MIN and MAX marks), inspect for oil or air leaks around fittings, verify cooling air intake is unobstructed, check that all safety guards are in place. 2.2 Every 500 Hours Clean the cooler fins with compressed air. Check and clean the air inlet filter element. Inspect all flexible hoses for wear or cracking. Verify drive belt tension and condition. 2.3 Oil Change — Every 4000 Hours or 12 Months The oil change interval for the GA 37 compressor is every 4000 operating hours or 12 months, whichever comes first. Use only Atlas Copco Roto-Inject Fluid (Part# 2901-0500-00) or equivalent ISO VG 46 synthetic compressor oil. Procedure: Run the machine for 10 minutes to warm the oil. Shut down and lock out. Remove drain plug at bottom of oil sump. Allow full drainage (approximately 20 minutes). Replace drain plug with new sealing washer. Fill with 12.5 litres of fresh oil. Run for 5 minutes and recheck level. n Always drain oil while warm. Cold oil drains incompletely and leaves contaminants in the system. 3. Oil Separator Replacement Replace the oil separator element every 8000 hours or when the differential pressure across the separator exceeds 0.8 bar. Part number: 1613-0109-12. Use only genuine Atlas Copco separator elements to maintain warranty. 4. Filter Specifications Component Part Number Interval Quantity Oil Filter 1613-6105-00 4000 hrs / 12 months 1 Air Filter Element 1613-7153-20 2000 hrs / 6 months 1 Oil Separator 1613-0109-12 8000 hrs 1 Drive Belt 1613-9400-10 16000 hrs or on wear 1 5. Torque Specifications"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\GA37_Maintenance_Manual.pdf",
+    "file_type": "PDF",
+    "page": 2,
+    "chunk_index": 1,
+    "text": "Oil drain plug: 45 Nm. Air end mounting bolts: 80 Nm. Motor mounting bolts: 65 Nm. Cooler inlet flange bolts: 30 Nm. All fasteners must be torqued using a calibrated torque wrench. 6. Troubleshooting 6.1 High Oil Temperature If the oil temperature exceeds 105°C, the machine will shut down automatically. Check: cooling air flow is not blocked, ambient temperature is below 45°C, oil level is correct, thermostatic valve is functioning correctly (opens at 70°C). 6.2 Excessive Oil Consumption Oil consumption above 5mg/m³ indicates a problem. Check oil separator element for damage, inspect all seals and gaskets, verify correct oil type is being used, check that unit is not being operated above rated pressure."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\GA45_Service_Guide.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "GA 45 Compressor — Field Service Guide 1. Overview The GA 45 is a 45 kW oil-injected rotary screw air compressor delivering up to 7.4 m³/min at 7.5 bar. This field service guide is intended for certified Atlas Copco service technicians only. 2. Technical Specifications Parameter Value Motor Power 45 kW / 60 HP Max Working Pressure 13 bar Free Air Delivery (FAD) 7.4 m³/min at 7.5 bar Oil Capacity 15 litres Noise Level 67 dB(A) Weight 720 kg Dimensions (L×W×H) 1800 × 900 × 1550 mm 3. Initial Startup After Service After any major service involving the air end or oil system: fill with correct oil grade, crack open main air outlet valve, start motor and immediately check for abnormal noise or vibration. Run at no load for 5 minutes monitoring oil temperature rise. Check all connections for leaks under pressure. 4. Bearing Replacement Main bearings on the GA 45 air end should be replaced every 40,000 operating hours or when vibration analysis indicates wear. This procedure requires removal of the air end and must be performed at an authorised service centre with proper tooling."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\ISO_9001_Internal_Audit_2023.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "ISO 9001:2015 Internal Audit Report — Service Division 2023 1. Audit Scope This internal audit assessed the Service Division Quality Management System against ISO 9001:2015 requirements. The audit covered: maintenance procedure compliance, document control, training records, customer complaint handling, and equipment calibration. 2. Audit Summary Clause Area Audited Finding Classification 7.1.5 Calibration records All torque wrenches calibrated within 12 months Conforming 7.2 Competence records 2 technicians missing Level 2 sign-off Minor NC 7.5 Document control Old procedure version found in workshop Minor NC 8.1 Operational planning Work orders completed correctly Conforming 9.1 Customer satisfaction Score 8.6/10 — above 8.0 target Conforming 10.2 Corrective actions All 2022 NCRs closed on time Conforming 3. Non-Conformances NC-2023-001 — Training Records Incomplete Two technicians (J. Martinez and new hire T. Okafor) do not have signed Level 2 competency assessment records on file. Training was completed but sign-off sheets were not filed. Required action: locate or re-issue sign-off sheets within 30 days. NC-2023-002 — Obsolete Document in Workshop Version 2 of the GA 37 Maintenance Manual (superseded March 2023) was found on the workshop shelf. Required action: remove all copies of superseded documents from work areas. Issue reminder to supervisors on document control requirements. 4. Positive Findings Customer satisfaction scores have improved from 8.1 in 2022 to 8.6 in 2023. Calibration records are 100% compliant — excellent result. All 2022 corrective actions have been closed within agreed timescales. 5. Next Audit The next internal audit is scheduled for Q2 2024. External certification audit (BSI) is scheduled for September 2024. Both non-conformances must be closed before the external audit."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\Leave_Policy_2024.docx",
+    "file_type": "DOCX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Leave and Absence Policy — 2024 Annual Leave The leave year runs from 1 January to 31 December. Leave should be taken in the year it is earned. A maximum of 5 days may be carried over to the following year with manager approval. Unused carry-over leave is forfeited on 31 March. Parental Leave Maternity leave: 52 weeks available (39 weeks statutory pay). Paternity leave: 2 weeks at full pay within 8 weeks of birth. Shared parental leave: up to 50 weeks may be shared between partners after the initial 2 weeks of maternity leave. Adoption leave matches maternity leave entitlements. Compassionate Leave Up to 5 days paid compassionate leave for the death of an immediate family member (spouse, child, parent, sibling). Up to 2 days for other close relatives. Additional unpaid leave may be approved at manager discretion. Study Leave Employees undertaking approved professional qualifications are entitled to paid study leave of up to 5 days per year for examinations. Atlas Copco Academy courses qualify automatically. External qualifications must be pre-approved and relevant to the role."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\Lockout_Tagout_SOP.docx",
+    "file_type": "DOCX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Lockout / Tagout — Standard Operating Procedure Purpose This procedure establishes the minimum requirements for the lockout or tagout of energy-isolating devices. It ensures that machines or equipment are isolated from all potentially hazardous energy sources before any employee performs servicing or maintenance. Scope This procedure applies to all maintenance personnel, contractors, and anyone performing work on powered equipment at all Atlas Copco service facilities and client sites. No exceptions are permitted. The 7-Step LOTO Procedure Step 1 — NOTIFY: Inform all affected employees that servicing will be performed and equipment will be shut down. Step 2 — IDENTIFY: Locate and identify all energy sources (electrical, pneumatic, hydraulic, gravity). Step 3 — SHUTDOWN: Turn off the machine using normal stopping procedure. Push STOP button. Step 4 — ISOLATE: Open the main isolator switch or valve to disconnect all energy sources. Step 5 — LOCK: Apply your personal padlock to each isolator. Each technician applies their OWN lock. Never share locks. Step 6 — RELEASE STORED ENERGY: Bleed down pneumatic systems (pressure must reach 0 bar). Discharge capacitors. Block gravity loads. Step 7 — VERIFY: Attempt to start equipment using normal start procedure. Confirm zero energy state. NOTE: CRITICAL: For compressors, verify that system pressure has fully bled down to 0 bar before opening any pressure connections. Minimum 15 minutes after shutdown. Returning Equipment to Service Before removing locks: ensure all tools and materials are removed from the work area, all guards are reinstalled, all affected employees are positioned safely away from the equipment. Remove locks in reverse order. Only the technician who applied a lock may remove it. Emergency Removal of a Lock If a technician is unavailable to remove their lock, the supervisor must: document the reason, attempt to contact the technician, obtain written authorisation from the department manager, ensure the technician is not in a hazardous position before removal."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Onboarding_Manual_2024.docx",
+    "file_type": "DOCX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "New Employee Onboarding Manual — Service Division 2024 Welcome to Atlas Copco Service Division This manual will guide you through your first 90 days. Please read it completely before your first day on site. Your line manager will review this content with you during your induction week. Your First Week Day 1: HR induction, system access setup, ID badge, uniform issue Day 2: Safety induction — mandatory. You cannot enter any workshop or client site until this is completed and signed off. Day 3–4: Shadow a Level 2 technician on a planned maintenance visit Day 5: Review your 90-day development plan with your line manager IT Systems Access You will need access to the following systems. Submit the IT access form (available on SharePoint under HR/Forms) on Day 1. Standard provisioning takes 3 business days. Expense Claims Submit expense claims by the 25th of each month via the SAP Concur portal. Keep all original receipts. Mileage is reimbursed at the current HMRC rate. Hotel bookings must be pre-approved by your line manager for stays exceeding £100/night. Key Contacts"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\PPE_Requirements.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Personal Protective Equipment — Requirements by Task 1. Mandatory PPE — All Maintenance Tasks The following PPE is mandatory for ALL maintenance activities regardless of task type: Safety glasses (EN 166), Steel-toed safety boots (EN ISO 20345 S3), High-visibility vest when working in production areas. 2. Task-Specific PPE Requirements Task Gloves Hearing Protection Face Shield Respiratory Oil change / filter replacement Chemical resistant nitrile Not required Splash guard recommended Not required Grinding / cutting Cut-resistant Level D Required >85dB Full face shield Dust mask P2 Working near running compressor Not required Required — 85dB+ Not required Not required Electrical work Insulated 1000V rated Not required Not required Not required Cleaning with solvents Chemical resistant Not required Full face shield Organic vapour mask Pressure testing Not required Not required Full face shield Not required 3. Inspection of PPE All PPE must be inspected before each use. Damaged or expired PPE must be removed from service immediately and replaced. Safety glasses with deep scratches, cracked lenses, or missing components must not be used. Report damaged PPE to your supervisor. n Safety glasses with anti-scratch coating do not last forever. Replace every 12 months or when coating shows significant wear."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Q4_Service_Log_2023.xlsx",
+    "file_type": "XLSX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "[Sheet: Service Log] Date | Unit | Serial | Work Order | Type | Technician | Duration (hrs) | Parts Used | Cost (EUR) | Notes 04-Oct-23 | CA-01 | BE457821 | WO-2310-001 | Planned PM | J. Martinez | 2.5 | Oil filter, Air filter | €124 | Routine 500hr service 11-Oct-23 | CA-03 | CF112837 | WO-2310-002 | Planned PM | S. Kumar | 3.0 | Oil filter, Air filter, oil 12L | €192 | Routine 4000hr + oil change 19-Oct-23 | CA-02 | BE461044 | WO-2310-003 | Inspection | J. Martinez | 1.0 | None | €0 | Pre-winter check — all OK 02-Nov-23 | CA-01 | BE457821 | WO-2311-001 | Planned PM | T. Okafor | 1.5 | Air filter | €52 | 500hr air filter service 15-Nov-23 | CA-04 | CF112901 | WO-2311-002 | Commissioning | S. Kumar | 4.0 | Full consumables kit | €380 | New unit installation and startup 28-Nov-23 | CA-03 | CF112837 | WO-2311-003 | Planned PM | J. Martinez | 2.0 | Oil filter, Air filter | €124 | Routine 500hr service 06-Dec-23 | CA-02 | BE461044 | WO-2312-001 | Planned PM | T. Okafor | 3.5 | Oil, Oil filter, Air filter | €196 | 4000hr oil change service 14-Dec-23 | CA-01 | BE457821 | WO-2312-002 | Reactive | S. Kumar | 1.0 | Drive belt | €95 | Belt wear detected — replaced preventively 21-Dec-23 | CA-03 | CF112837 | WO-2312-003 | Inspection | J. Martinez | 0.5 | None | €0 | Year-end inspection — all satisfactory"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Q4_Service_Log_2023.xlsx",
+    "file_type": "XLSX",
+    "page": 2,
+    "chunk_index": 1,
+    "text": "[Sheet: Technician Hours] Technician | Oct | Nov | Dec | Q4 Total | YTD Total J. Martinez | 8 | 5.5 | 2 | 15.5 | 62 S. Kumar | 4.5 | 5 | 1.5 | 11 | 48 T. Okafor | 1 | 1.5 | 0.5 | 3 | 31"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Safety_Checklist_2024.docx",
+    "file_type": "DOCX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Pre-Maintenance Safety Checklist — 2024 Complete this checklist before beginning any maintenance work. Sign and date at bottom. File in the equipment maintenance log. Section A — Machine Status ☐ Machine has been shut down using normal stop procedure ☐ Main isolator has been locked out (personal padlock applied) ☐ Tagout label completed with name, date, time, and reason for lockout ☐ System pressure bled to 0 bar — verified on pressure gauge ☐ Machine temperature checked — cooled to safe working temperature Section B — Work Area ☐ Area cordoned off with safety barrier tape ☐ \"Equipment Under Maintenance — Do Not Start\" sign posted on control panel ☐ Oil spill kit available within 5 metres of work area ☐ Fire extinguisher accessible (not blocked by equipment or materials) Section C — Personal Preparation ☐ Correct PPE donned as per PPE Requirements procedure ☐ Work permit issued and signed by supervisor (if required) ☐ Maintenance procedure reviewed before starting work Sign-off Technician Name: _______________________ Date: ____________ Time: ________ Supervisor Sign-off (if required): _______________________ NOTE: This checklist must be completed in full. Partial completion is not acceptable. Any \"NO\" answer must be resolved before work begins."
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Spare_Parts_Catalog.xlsx",
+    "file_type": "XLSX",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "[Sheet: GA 37 Parts] Part Number | Description | Category | Unit Price (EUR) | Lead Time | Min Stock 1613-6105-00 | Oil Filter Element GA37 | Filtration | €42.00 | 2 days | 2 1613-7153-20 | Air Filter Element GA37 | Filtration | €38.50 | 2 days | 2 1613-0109-12 | Oil Separator Element | Filtration | €185.00 | 5 days | 1 1613-9400-10 | Drive Belt Set GA37 | Drive | €95.00 | 3 days | 1 2901-0500-00 | Roto-Inject Fluid 20L | Lubricant | €68.00 | 1 day | 4 1089-0573-00 | Thermostatic Valve | Controls | €220.00 | 7 days | 1 1622-3142-00 | Minimum Pressure Valve | Pressure | €310.00 | 10 days | 1 1613-0101-60 | Inlet Valve Unloader | Inlet | €145.00 | 5 days | 1 2901-1300-00 | Bearing Kit Air End | Bearings | €890.00 | 14 days | 1 1619-6698-00 | Pressure Relief Valve | Safety | €75.00 | 3 days | 2"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Spare_Parts_Catalog.xlsx",
+    "file_type": "XLSX",
+    "page": 2,
+    "chunk_index": 1,
+    "text": "[Sheet: GA 45 Parts] Part Number | Description | Category | Unit Price (EUR) | Lead Time | Min Stock 1621-8800-10 | Oil Filter Element GA45 | Filtration | €48.00 | 2 days | 2 1621-5720-00 | Air Filter Element GA45 | Filtration | €52.00 | 2 days | 2 1621-0109-00 | Oil Separator GA45 | Filtration | €220.00 | 5 days | 1 2901-0500-00 | Roto-Inject Fluid 20L | Lubricant | €68.00 | 1 day | 6 1621-9400-00 | Drive Belt GA45 | Drive | €120.00 | 3 days | 1"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Spare_Parts_Catalog.xlsx",
+    "file_type": "XLSX",
+    "page": 3,
+    "chunk_index": 2,
+    "text": "[Sheet: Consumables] Item | Specification | Application | Supplier | Reorder Point Compressor Oil | ISO VG 46 Synthetic | All GA series | Atlas Copco | < 40L stock Thread Sealant | Loctite 542 | Pipe fittings | Henkel | < 5 tubes Anti-seize Paste | Molykote P-37 | High temp bolts | Dow Corning | < 2 tubes O-Ring Kit | Various sizes | General maintenance | Atlas Copco | < 1 kit Safety Wire | 0.8mm stainless | Critical fasteners | Generic | < 50m"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Technician_Guide_Level2.pdf",
+    "file_type": "PDF",
+    "page": 1,
+    "chunk_index": 0,
+    "text": "Technician Certification Guide — Level 2 1. About This Guide This guide covers the competencies required for Level 2 Technician certification at Atlas Copco. Level 2 technicians are qualified to perform all scheduled maintenance, minor repairs, and basic troubleshooting on GA series compressors without direct supervision. 2. Core Competencies Required Competency Assessment Method Pass Mark Oil system maintenance and replacement Practical assessment 100% — no errors Filter inspection and replacement Practical assessment 100% — no errors LOTO procedure Written + practical 100% — no errors Compressor start/stop procedure Practical assessment 100% — no errors Fault code interpretation Written test 80% minimum Oil sampling procedure Practical assessment Pass / Fail Basic electrical safety Written test 90% minimum 3. Oil Sampling Procedure Compressor oil analysis should be performed every 2000 operating hours. The sample must be taken from the oil separator while the machine is running at normal operating temperature (minimum 80°C). Use only the approved Kittiwake sample bottles. Procedure: Attach sample valve to the sample port on the oil separator return line. Flush 200ml of oil through to waste (discards stagnant oil in the port). Fill the sample bottle to the marked line (100ml). Label immediately with: machine serial number, date, time, oil hours on current fill, technician name. Submit to the approved laboratory within 48 hours of collection. n Samples submitted more than 48 hours after collection may be rejected by the laboratory as results can be affected by oxidation. 4. Understanding Oil Analysis Results The laboratory report will flag values outside normal limits. Key parameters to monitor: viscosity (should be within ±10% of new oil), iron content (indicates bearing wear — alarm at >50ppm), silicon (indicates air filter bypass — alarm at >20ppm), water content (alarm at >0.1%). 5. Fault Code Reference — GA 37 Code Description Immediate Action Common Cause E01 High oil temperature shutdown Check cooling, oil level Blocked cooler, low oil E02 High pressure shutdown Check pressure settings Blocked filter, outlet valve"
+  },
+  {
+    "file_path": "C:\\Users\\Sumit\\Downloads\\crawl2\\one\\Technician_Guide_Level2.pdf",
+    "file_type": "PDF",
+    "page": 2,
+    "chunk_index": 1,
+    "text": "E03 Low oil pressure shutdown Stop immediately, check oil Oil leak, worn pump E04 Motor overload Check motor current draw Mechanical overload, voltage W01 Oil change due Schedule maintenance 4000 hrs elapsed W02 Filter replacement due Replace air filter 2000 hrs elapsed W03 Oil separator due Schedule maintenance 8000 hrs elapsed"
+  }
+]
