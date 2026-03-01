@@ -6,6 +6,12 @@
 Local semantic search engine for company documents — PDFs, Word docs, Excel sheets.  
 Built with Python + HuggingFace (free, offline, no OpenAI key needed).
 
+
+
+<img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/c80a1b2e-bc0f-4bd6-8df8-cc3e23c6bef5" />
+
+<img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/a8f7df91-8986-413f-879e-8cc360071752" />
+
 ---
 
 ## What This Does
