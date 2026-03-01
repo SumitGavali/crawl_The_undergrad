@@ -1,4 +1,5 @@
-# KnowledgeOS — Enterprise File Search Prototype
+# ewis
+
 
 > **One button. Any folder. Ask anything. Get answers from your files.**
 
